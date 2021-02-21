@@ -25,7 +25,7 @@ public class Board {
 		this(name, 10);
 	}
 	
-	public String getName() {return name; }
+	public String getName() {return this.name; }
 	
 	public void setName(String name) {this.name = name; }
 	
