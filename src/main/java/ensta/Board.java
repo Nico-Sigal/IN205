@@ -7,7 +7,7 @@ public class Board {
 	private Character[][] ship;
 	private Boolean[][] hits;
 	
-	
+
 	public Board(String name, int size){
 		this.size = size;
 		this.name = name;
@@ -19,6 +19,10 @@ public class Board {
 				hits[i][j] = false;
 			}
 		}
+	}
+	
+	public Board(String name) {
+		this(name, 10);
 	}
 	
 	public String getName() {return name; }
@@ -52,7 +56,7 @@ public class Board {
 	
 	public void affichageInit(){
 		centrerNom();
-		printSpaces(getSize() + 3);
+		printSpaces(getSize() + 2);
 		System.out.print("SHIPS");
 		printSpaces(2 * getSize());
 		System.out.print("HITS");
@@ -70,15 +74,15 @@ public class Board {
 	}
 	
 	public void affichageLettresGlobal(){
-		printSpaces(5);
+		printSpaces(4);
 		affichageLettre();
-		printSpaces(6);
+		printSpaces(5);
 		affichageLettre();
 		sautLigne(1);
 	}
 	
 	public void affichagePointillés(){
-		for (int k = 0 ; k < 4 * getSize() + 14 ; k ++){
+		for (int k = 0 ; k < 4 * getSize() + 13 ; k ++){
 			System.out.print("-");
 		}
 		sautLigne(1);
@@ -91,7 +95,6 @@ public class Board {
 		System.out.print(i+1);
 		printSpaces(1);
 		System.out.print("|");
-		printSpaces(1);
 	}
 	
 	public void affichageShips(int i, int j){
