@@ -1,9 +1,13 @@
 ensta/Destroyer.class
+ensta/Player.class
 ensta/AbstractShip.class
 ensta/Board.class
-ensta/Submarine.class
 ensta/AbstractShip$Orientation.class
 ensta/Carrier.class
-ensta/TestBoard.class
+ensta/InputHelper.class
 ensta/IBoard.class
+ensta/InputHelper$CoordInput.class
+ensta/InputHelper$ShipInput.class
+ensta/Submarine.class
+ensta/TestBoard.class
 ensta/Battleship.class

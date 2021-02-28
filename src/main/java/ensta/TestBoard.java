@@ -18,7 +18,7 @@ public class TestBoard {
 		// Test exo 3
 		
         // On essaie de placer un sous-marin en dehors de la grille ==> Erreur.
-        testBoard.putShip(testSubmarine, 15, 15);
+        /*testBoard.putShip(testSubmarine, 15, 15);
         System.out.println(testBoard.hasShip(0,15));
 				
 		Destroyer testDestroyer = new Destroyer(AbstractShip.Orientation.NORTH);
@@ -34,6 +34,10 @@ public class TestBoard {
 		Carrier	testCarrier = new Carrier(AbstractShip.Orientation.WEST);
         testBoard.putShip(testCarrier, 10, 8);
 		testBoard.putShip(testCarrier, 2, 10);
-		testBoard.print();
+		testBoard.print();*/
+		
+		// Test exo 4
+		
+		
 	}
 }
