@@ -1,5 +1,8 @@
+/Users/nicolassigal/Desktop/IN205/ENSTA2021/Projet1/bataille-navale/src/main/java/ensta/Boats/Battleship.java
 /Users/nicolassigal/Desktop/IN205/ENSTA2021/Projet1/bataille-navale/src/main/java/ensta/Board.java
-/Users/nicolassigal/Desktop/IN205/ENSTA2021/Projet1/bataille-navale/src/main/java/ensta/TestAbstractShip.java
-/Users/nicolassigal/Desktop/IN205/ENSTA2021/Projet1/bataille-navale/src/main/java/ensta/App.java
-/Users/nicolassigal/Desktop/IN205/ENSTA2021/Projet1/bataille-navale/src/main/java/ensta/AbstractShip.java
+/Users/nicolassigal/Desktop/IN205/ENSTA2021/Projet1/bataille-navale/src/main/java/ensta/Boats/AbstractShip.java
+/Users/nicolassigal/Desktop/IN205/ENSTA2021/Projet1/bataille-navale/src/main/java/ensta/Boats/Submarine.java
+/Users/nicolassigal/Desktop/IN205/ENSTA2021/Projet1/bataille-navale/src/main/java/ensta/Boats/Destroyer.java
+/Users/nicolassigal/Desktop/IN205/ENSTA2021/Projet1/bataille-navale/src/main/java/ensta/Boats/Carrier.java
+/Users/nicolassigal/Desktop/IN205/ENSTA2021/Projet1/bataille-navale/src/main/java/ensta/IBoard.java
 /Users/nicolassigal/Desktop/IN205/ENSTA2021/Projet1/bataille-navale/src/main/java/ensta/TestBoard.java

@@ -1,7 +1,8 @@
 package ensta;
-import java.util.Arrays;
 
-public class Board {
+public class Board //implements IBoard
+{
+
 	private int size;
 	private String name;
 	private Character[][] ship;
@@ -36,15 +37,11 @@ public class Board {
 	public int getSize() { return this.size; }
 
 	public void sautLigne(int n){
-		for (int i = 0 ; i < n ; i++){
-			System.out.println(" ");
-		}
+		System.out.print(new String(new char[n]).replace("\0", "\n"));
 	}
 
 	public void printSpaces(int n){
-		for (int i = 0 ; i < n ; i++){
-			System.out.print(" ");
-		}
+		System.out.print(new String(new char[n]).replace("\0", " "));
 	}
 
 	public void centrerNom(){
@@ -102,7 +99,7 @@ public class Board {
 		printSpaces(1);
 	}
 	
-	public void affichage_central(){
+	public void affichageCentral(){
 		printSpaces(1);
 		System.out.print(" || ");
 		printSpaces(1);
@@ -133,7 +130,7 @@ public class Board {
 			for (int i = 0 ; i < getSize() ; i++){
 				affichageNumérosDébutLignes(i);
 				for (int j = 0; j < getSize() ; j++) { affichageShips(i,j); }
-				affichage_central();
+				affichageCentral();
 				for (int j = 0; j < getSize() ; j++) { affichageHits(i,j);}
 				affichageNumérosFinLignes(i);
 			}
@@ -146,5 +143,87 @@ public class Board {
 		affichageGrilles();
 		affichagePointillés();
 	sautLigne(2);
+	}
+
+	public Character[][] saveShips()
+	{
+		Character[][] saveShips = new Character[this.size][this.size];
+		for (int i = 0; i < this.size; i++)
+		{
+			for (int j = 0; j< this.size; j++)
+			{
+				saveShips[i][j] = this.ship[i][j];
+			}
+		}
+		return saveShips;
+	}
+	
+	public void putShip(AbstractShip ship, int x, int y)
+	{
+		Character[][] saveShips = saveShips();
+		AbstractShip.Orientation o = ship.getOrientation();
+		int no = 0 , ea = 0 , so = 0, we = 0;
+		if (o == AbstractShip.Orientation.NORTH){ no = 1;}
+		if (o == AbstractShip.Orientation.EAST){ ea = 1;}
+		if (o == AbstractShip.Orientation.SOUTH){ so = 1;}
+		if (o == AbstractShip.Orientation.WEST){ we = 1;}
+		try
+		{
+			if (no+so == 1){
+				if (y - 1 + (so-no) * ship.size > this.size || y - 1 + (so-no) * ship.size < 0){
+					throw new Exception("Coordonées selon y trop grandes ou petites");
+				}
+				for (int i = 0; i < ship.size; i++){
+					if (this.ship[y - 1 + (so-no) * i][x - 1 ] != '.')
+					{
+						throw new Illegal­Argument­Exception ("Bateau déjà présent à cet endroit: " + ship.name.toString() + "non placé.");
+					}
+					this.ship[y - 1 + (so-no) * i][x - 1 ] = ship.label;
+				}
+			}
+			if (ea+we == 1){
+				if (x - 1 + (ea-we) * ship.size > this.size || x - 1 + (ea-we) * ship.size < 0){
+					throw new Exception("Coordonnées selon y trop grandes ou petites : " + ship.name.toString() + " non placé.");
+				}
+				for (int j = 0; j < ship.size; j++){
+					if (this.ship[y - 1][x - 1 + (ea-we) * j] != '.')
+					{
+						throw new Illegal­Argument­Exception ("Bateau déjà présent à cet endroit : " + ship.name.toString() + " non placé.");
+					}
+					this.ship[y - 1][x - 1 + (ea-we) * j] = ship.label;
+				}
+			}
+		}
+
+		catch (Illegal­Argument­Exception e)
+		{
+			this.ship = saveShips;
+			sautLigne(1);
+			System.out.println("Problème de type : " + e.toString());
+		}
+		catch (Exception e)
+		{
+			this.ship = saveShips;
+			sautLigne(1);
+			System.out.println("Problème d'indice de type : " + e.toString());
+		}
+	}
+
+
+	public boolean hasShip(int x, int y)
+	{
+		try
+		{
+		if (this.ship[y][x] != '.')
+			return false;
+		else
+			return true;
+		}
+		catch (Exception e)
+		{
+			System.out.println("Problème d'indice de type : " + e.toString() );
+			System.out.println("Réponse à l'appel hasShip("+x+","+y+") impossible, false renvoyé par défaut\n");
+			return false;
+		}
 	}
 }

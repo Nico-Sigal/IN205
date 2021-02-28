@@ -1,25 +1,17 @@
 package ensta;
 
-enum Orientation {
-	NORTH,
-	WEST,
-	SOUTH,
-	EAST
-}
-
 public class AbstractShip {
 		
-	private char label;
-	private String name;
-	private int size;
-	private Orientation orientation;
+	public char label;
+	public String name;
+	public int size;
+	public enum Orientation {NORTH,EAST,SOUTH,WEST};
+	public Orientation orientation;
 	public int strikeCount;
-
-	public char getLabel() {return this.label; }
 
 	public String getName() {return this.name; }
 	
-	public int getSize() {return this.size; }
+	public int getLength() {return this.size; }
 	
 	public Orientation getOrientation() { return this.orientation; }
 	
