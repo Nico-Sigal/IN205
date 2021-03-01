@@ -58,7 +58,7 @@ public class TestBoard {
 		// Test exo 6
 		
         Hit testHit;
-        Board testBoard = new Board("Nico", 15);
+        Board testBoard = new Board("Nico", 35);
         Destroyer testDestroyer = new Destroyer(AbstractShip.Orientation.EAST);
         testBoard.putShip(testDestroyer, 10, 5);
         testBoard.print();

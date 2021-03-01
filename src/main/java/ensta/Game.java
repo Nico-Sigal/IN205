@@ -26,14 +26,23 @@ public class Game {
     public Game init() {
         if (!loadSave()) {
             // init attributes
-            System.out.println("entre ton nom:");
-
+            System.out.println("Entre ton nom : ");
+            sin = new Scanner(System.in);
+            
             // TODO use a scanner to read player name
-
+            String name = sin.nextLine();
+			
+			
             // TODO init boards
             Board b1, b2;
+            b1 = new Board(name);
+            b2 = new Board(" COMPUTER ");
 
+            List<AbstractShip> ships1 = createDefaultShips();
+            List<AbstractShip> ships2 = createDefaultShips();
             // TODO init this.player1 & this.player2
+            player1 = new Player(b1, b2, ships1);
+            player2 = new AIPlayer(b2, b1, ships2);
 
             b1.print();
             // place player ships
@@ -56,7 +65,10 @@ public class Game {
         boolean done;
         do {
             hit = Hit.MISS; // TODO player1 send a hit
+            hit = player1.sendHit(coords);
+
             boolean strike = hit != Hit.MISS; // TODO set this hit on his board (b1)
+            b1.setHit(strike, coords[0], coords[1]);
 
             done = updateScore();
             b1.print();
@@ -66,7 +78,8 @@ public class Game {
 
             if (!done && !strike) {
                 do {
-                    hit = Hit.MISS; // TODO player2 send a hit.
+                    hit = Hit.MISS; 
+                    hit = player2.sendHit(coords);// TODO player2 send a hit.
 
                     strike = hit != Hit.MISS;
                     if (strike) {
@@ -90,7 +103,7 @@ public class Game {
 
 
     private void save() {
-        try {
+        /*try {
             // TODO bonus 2 : uncomment
             //  if (!SAVE_FILE.exists()) {
             //      SAVE_FILE.getAbsoluteFile().getParentFile().mkdirs();
@@ -100,11 +113,11 @@ public class Game {
 
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     private boolean loadSave() {
-        if (SAVE_FILE.exists()) {
+        /*if (SAVE_FILE.exists()) {
             try {
                 // TODO bonus 2 : deserialize players
 
@@ -112,7 +125,7 @@ public class Game {
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
         return false;
     }
 
@@ -141,7 +154,7 @@ public class Game {
             case MISS:
                 msg = hit.toString();
                 break;
-            case STIKE:
+            case STRIKE:
                 msg = hit.toString();
                 color = ColorUtil.Color.RED;
                 break;
@@ -156,10 +169,11 @@ public class Game {
     }
 
     private static List<AbstractShip> createDefaultShips() {
-        return Arrays.asList(new AbstractShip[]{new Destroyer(), new Submarine(), new Submarine(), new BattleShip(), new Carrier()});
+        return Arrays.asList(new AbstractShip[]{new Destroyer(), new Submarine(), new Submarine(), new Battleship(), new Carrier()});
     }
 
     public static void main(String args[]) {
         new Game().init().run();
     }
 }
+   

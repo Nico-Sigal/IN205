@@ -17,4 +17,19 @@ public class AIPlayer extends Player {
     }
 
     // TODO AIPlayer must not inherit "keyboard behavior" from player. Call ai instead.
+    /**
+    SendHit adapté à une IA (appelle la fonction de BattleshipsAI)
+    */
+    public Hit sendHit(int[] coords){
+        Hit hit = ai.sendHit(coords);
+        return hit;
+	}
+
+    /**
+    Initialisation automatique des navires de l'IA
+    */
+    public void putShips() {
+        ai.putShips(ships);
+	}
 }
+    

@@ -117,7 +117,6 @@ public class Board implements IBoard
 	}
 	
 	public void affichageCentral(){
-		printSpaces(1);
 		System.out.print(" || ");
 		printSpaces(1);
 	}
@@ -205,7 +204,7 @@ public class Board implements IBoard
 				}
 			}
 			if (ea+we == 1){
-				if (x - 1 + (ea-we) * ship.size > this.size || x - 1 + (ea-we) * ship.size < 0){
+				if (x - 1 + (ea-we) * ship.size > this.size || x - 1 + (ea-we) * ship.size < -1){
 					throw new Exception("Coordonnées selon y trop grandes ou petites : " + ship.name.toString() + " non placé.");
 				}
 				for (int j = 0; j < ship.size; j++){

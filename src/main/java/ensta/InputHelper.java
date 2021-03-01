@@ -35,7 +35,6 @@ public final class InputHelper {
         ShipInput res = new ShipInput();
         String[] validOrientations = {"n", "s", "e", "w"}; // North, South, East, West
         boolean done = false;
-
         do {
             try {
                 String[] in = sin.nextLine().toLowerCase().split(" ");
@@ -43,8 +42,8 @@ public final class InputHelper {
                     String coord = in[0];
                     if (Arrays.asList(validOrientations).contains(in[1])) {
                         res.orientation = in[1];
-                        res.x = coord.charAt(0) - 'a';
-                        res.y = Integer.parseInt(coord.substring(1, coord.length())) - 1;
+                        res.x = coord.charAt(0) - '`';
+                        res.y = Integer.parseInt(coord.substring(1, coord.length()));
                         done = true;
                     }
                 }

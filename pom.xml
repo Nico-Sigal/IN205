@@ -35,7 +35,7 @@
 <artifactId>exec-maven-plugin</artifactId>
 <version>1.4.0</version>
 <configuration>
-<mainClass>ensta.TestGame</mainClass>
+<mainClass>ensta.Game</mainClass>
 </configuration>
 </plugin>
         <plugin>
