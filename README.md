@@ -38,3 +38,9 @@ Créer TestGame ne m'a cependant pas posé de réel problème.
 ### Exercice 8 : Place au jeu !
 
 Une fois les classes créées et l'énoncé compris, j'ai assez vite réalisé la partie 8. Pouvoir enfin essayer le code avec un joueur était réellement satisfaisant. Cependant, à la suite de cette implémentation, je me suis rendu compte que BattleShipsAI ne fonctionnait plus correctement, et restait bloquée... Je vais essayer de poursuivre mon déboggage, et re déposerai alors le fichier.
+
+(Edit : j'ai enfin trouvé mon erreur, mes fichiers fonctionnent bien !)
+
+Une fois les classes créées et l'énoncé compris, j'ai assez vite réalisé la partie 8. Pouvoir enfin essayer le code avec un joueur était réellement satisfaisant. Cependant, à la suite de cette implémentation, je me suis rendu compte que BattleShipsAI ne fonctionnait plus correctement, et restait bloquée... Je vais essayer de poursuivre mon déboggage, et re déposerai alors le fichier.
+
+Une piste d'amélioration pourrait consister en une fonction de retenue de l'IA, pour qu'une frappe au milieu d'un bateau permette tout de même de le couler. Actuellement, elle se contente d'éliminer une portion du bateau seulement, d'un des deux côtés de la frappe.
