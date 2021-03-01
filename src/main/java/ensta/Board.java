@@ -254,5 +254,22 @@ public class Board //implements IBoard
 			return false;
 		}
 	}
+	
+	public Hit sendHit(int x, int y){
+		Hit res;
+		if (ship[y-1][x-1].isStruck() == null || ship[y-1][x-1].isStruck() == true) {
+			//Si le navire est déjà touché on renvoie MISS
+			return Hit.MISS;
+		}
+		else {
+			ship[y-1][x-1].addStrike();
+			if (ship[y-1][x-1].getShip().isSunk()){
+				res = Hit.fromInt(ship[y-1][x-1].getShip().size);
+				System.out.println(res.toString()+" ==> coulé\n");
+				return res;
+			}
+			else{ return Hit.STRIKE; }
+		}
+	}
 
 }

@@ -57,8 +57,23 @@ public class TestBoard {
 		
 		// Test exo 6
 		
-		/*Board testBoard = new Board("Nico", 15);
-			
-		*/
+        Hit testHit;
+        Board testBoard = new Board("Nico", 15);
+        Destroyer testDestroyer = new Destroyer(AbstractShip.Orientation.EAST);
+        testBoard.putShip(testDestroyer, 10, 5);
+        testBoard.print();
+		testHit = testBoard.sendHit(10,5);
+		System.out.println(testHit.toString());
+        testBoard.print();
+        testHit = testBoard.sendHit(9,5);
+		System.out.println(testHit.toString()); // doit renvoyer "Manqué"
+		testBoard.print();
+		testHit = testBoard.sendHit(11,5); // doit retourner la valeur TYPE_DU_NAVIRE
+       	System.out.println(testHit.toString());
+		testBoard.print();
+
+        System.out.println("Navire coulé  ? ==> " + testDestroyer.isSunk());
+        System.out.println("Dernière valeur renvoyée ? ==> " + testHit.toString());
+        //Cela fonctionne bien		
 	}
 }
