@@ -123,7 +123,7 @@ public class BattleShipsAI implements Serializable {
         }
 
         Hit hit = opponent.sendHit(res[0] + 1, res[1] + 1);
-        board.setHit(hit != Hit.MISS, res[0] + 1, res[1] + 1);
+        board.setHit(hit != Hit.MISS, res[0], res[1]);
 
         if (hit != Hit.MISS) {
             if (lastStrike != null) {

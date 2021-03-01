@@ -193,7 +193,7 @@ public class Board implements IBoard
 		try
 		{
 			if (no+so == 1){
-				if (y - 1 + (so-no) * ship.size > this.size || y - 1 + (so-no) * ship.size < 0){
+				if (y - 1 + (so-no) * ship.size > this.size || y + (so-no) * ship.size < 0){
 					throw new Exception("Coordonées selon y trop grandes ou petites");
 				}
 				for (int i = 0; i < ship.size; i++){
