@@ -5,19 +5,19 @@ public class Board //implements IBoard
 
 	private int size;
 	private String name;
-	private Character[][] ship;
+	private ShipState[][] ship;
 	private Boolean[][] hits;
 	
 
 	public Board(String name, int size){
 		this.size = size;
 		this.name = name;
-		this.ship = new Character[size][size];
+		this.ship = new ShipState[size][size];
 		this.hits = new Boolean[size][size];
 		for (int i = 0; i < size; i++) {
 			for (int j = 0; j < size; j++) {
-				ship[i][j] = '.';
-				hits[i][j] = false;
+				ship[i][j] = new ShipState();
+				hits[i][j] = null;
 			}
 		}
 	}
@@ -30,9 +30,31 @@ public class Board //implements IBoard
 	
 	public void setName(String name) {this.name = name; }
 	
-	public Character[][] getShip() {return ship; }
+	public ShipState[][] getShip() {return ship; }
 	
-	public Boolean[][] getHits() {	return hits; }
+	public Boolean getHit(int x, int y)
+	{
+		try{
+		return this.hits[y][x];
+		}
+		catch (Exception e)
+		{
+			System.out.println("Problème d'indice de type : " + e.toString() );
+			System.out.println("Réponse à l'appel getHit("+x+","+y+") impossible, false renvoyé par défaut\n");
+			return false;
+		}
+	}
+	
+	public void setHit(Boolean hit, int x, int y){
+		try{
+		this.hits[y-1][x-1] = hit;
+		}
+		catch (Exception e)
+		{
+			System.out.println("Problème d'indice de type : " + e.toString() );
+			System.out.println("Frappe annulée\n");
+		}
+	}
 	
 	public int getSize() { return this.size; }
 
@@ -95,8 +117,14 @@ public class Board //implements IBoard
 	}
 	
 	public void affichageShips(int i, int j){
-		System.out.print(this.ship[i][j]);
-		printSpaces(1);
+		if (this.ship[i][j] == null){
+			System.out.print(".");
+			printSpaces(1);
+		}
+   		else { 
+			System.out.print(this.ship[i][j].toString());
+			printSpaces(1);
+		}
 	}
 	
 	public void affichageCentral(){
@@ -106,13 +134,16 @@ public class Board //implements IBoard
 	}
 	
 	public void affichageHits(int i, int j){
-		if (this.hits[i][j]) {
-			System.out.print("x");
+		if (this.hits[i][j] == null){
+			System.out.print(".");
+			printSpaces(1);
+		}
+		else if(this.hits[i][j] == true){
+			System.out.print(ColorUtil.colorize("X", ColorUtil.Color.RED));
 			printSpaces(1);
 		}
 		else {
-			System.out.print(".");
-			printSpaces(1);
+			System.out.print ("X ");	    
 		}
 	}
 	
@@ -145,14 +176,17 @@ public class Board //implements IBoard
 	sautLigne(2);
 	}
 
-	public Character[][] saveShips()
+	public ShipState[][] saveShips()
 	{
-		Character[][] saveShips = new Character[this.size][this.size];
-		for (int i = 0; i < this.size; i++)
-		{
-			for (int j = 0; j< this.size; j++)
-			{
-				saveShips[i][j] = this.ship[i][j];
+		ShipState[][] saveShips = new ShipState[this.size][this.size];
+		for (int i = 0; i < this.size; i++){
+			for (int j = 0; j< this.size; j++){
+				if (this.ship[i][j].isStruck()==null){
+					saveShips[i][j]=new ShipState();
+				}
+				else {
+					saveShips[i][j]=this.ship[i][j];
+				}
 			}
 		}
 		return saveShips;
@@ -160,7 +194,7 @@ public class Board //implements IBoard
 	
 	public void putShip(AbstractShip ship, int x, int y)
 	{
-		Character[][] saveShips = saveShips();
+		ShipState[][] saveShips = saveShips();
 		AbstractShip.Orientation o = ship.getOrientation();
 		int no = 0 , ea = 0 , so = 0, we = 0;
 		if (o == AbstractShip.Orientation.NORTH){ no = 1;}
@@ -174,11 +208,10 @@ public class Board //implements IBoard
 					throw new Exception("Coordonées selon y trop grandes ou petites");
 				}
 				for (int i = 0; i < ship.size; i++){
-					if (this.ship[y - 1 + (so-no) * i][x - 1 ] != '.')
-					{
+					if (this.ship[y - 1 + (so-no) * i][x - 1 ].isStruck() != null){
 						throw new Illegal­Argument­Exception ("Bateau déjà présent à cet endroit: " + ship.name.toString() + "non placé.");
 					}
-					this.ship[y - 1 + (so-no) * i][x - 1 ] = ship.label;
+					this.ship[y - 1 + (so-no) * i][x - 1 ] = new ShipState(ship);
 				}
 			}
 			if (ea+we == 1){
@@ -186,44 +219,40 @@ public class Board //implements IBoard
 					throw new Exception("Coordonnées selon y trop grandes ou petites : " + ship.name.toString() + " non placé.");
 				}
 				for (int j = 0; j < ship.size; j++){
-					if (this.ship[y - 1][x - 1 + (ea-we) * j] != '.')
-					{
+					if (this.ship[y - 1][x - 1 + (ea-we) * j].isStruck() != null){
 						throw new Illegal­Argument­Exception ("Bateau déjà présent à cet endroit : " + ship.name.toString() + " non placé.");
 					}
-					this.ship[y - 1][x - 1 + (ea-we) * j] = ship.label;
+					this.ship[y - 1][x - 1 + (ea-we) * j] = new ShipState(ship);
 				}
 			}
 		}
 
-		catch (Illegal­Argument­Exception e)
-		{
+		catch (Illegal­Argument­Exception e){
 			this.ship = saveShips;
 			sautLigne(1);
 			System.out.println("Problème de type : " + e.toString());
 		}
-		catch (Exception e)
-		{
+		catch (Exception e){
 			this.ship = saveShips;
 			sautLigne(1);
 			System.out.println("Problème d'indice de type : " + e.toString());
 		}
 	}
 
-
-	public boolean hasShip(int x, int y)
-	{
-		try
-		{
-		if (this.ship[y][x] != '.')
-			return false;
-		else
-			return true;
+	public boolean hasShip(int x, int y){
+		try{
+			if (this.ship[y][x].isStruck() != null){
+				return false;
+			}
+			else {
+				return true;
+			}
 		}
-		catch (Exception e)
-		{
+		catch (Exception e){
 			System.out.println("Problème d'indice de type : " + e.toString() );
 			System.out.println("Réponse à l'appel hasShip("+x+","+y+") impossible, false renvoyé par défaut\n");
 			return false;
 		}
 	}
+
 }

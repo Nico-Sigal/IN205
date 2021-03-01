@@ -9,6 +9,14 @@ public class AbstractShip {
 	public Orientation orientation;
 	public int strikeCount;
 
+	public AbstractShip(char label, String name, int size, Orientation orientation){
+		this.name = name;
+		this.label = label;
+		this. size = size;
+		this.orientation = orientation;
+		this.strikeCount = 0;
+	}
+	
 	public String getName() {return this.name; }
 	
 	public int getLength() {return this.size; }
@@ -19,16 +27,8 @@ public class AbstractShip {
 	
 	public void addStrike(){ strikeCount ++; }
 
-	public boolean isDestroyed(){
-		boolean destroyed = strikeCount == size ? true : false ;
-		return destroyed;
-	}
-	
-	public AbstractShip(char label, String name, int size, Orientation orientation){
-		this.label = label;
-		this.name = name;
-		this.size = size;
-		this.orientation = orientation;
-		this.strikeCount = 0;
+	public boolean isSunk(){
+		boolean sunk = strikeCount == size ? true : false ;
+		return sunk;
 	}
 }
