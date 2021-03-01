@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="ensta.AppTest" time="0.007" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="ensta.AppTest" time="0.004" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="15"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -12,7 +12,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="FR"/>
     <property name="sun.boot.library.path" value="/usr/local/Cellar/openjdk/15.0.1/libexec/openjdk.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/nicolassigal/Desktop/IN205/ENSTA2021/Projet1/bataille-navale/target/surefire/surefirebooter14492037925625934846.jar /Users/nicolassigal/Desktop/IN205/ENSTA2021/Projet1/bataille-navale/target/surefire 2021-03-01T22-10-13_813-jvmRun1 surefire8990522577085670384tmp surefire_010717074829171655008tmp"/>
+    <property name="sun.java.command" value="/Users/nicolassigal/Desktop/IN205/ENSTA2021/Projet1/bataille-navale/target/surefire/surefirebooter15528557665864100329.jar /Users/nicolassigal/Desktop/IN205/ENSTA2021/Projet1/bataille-navale/target/surefire 2021-03-01T22-18-59_245-jvmRun1 surefire12278714946058624889tmp surefire_05174897711338775970tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/Users/nicolassigal/Desktop/IN205/ENSTA2021/Projet1/bataille-navale/target/test-classes:/Users/nicolassigal/Desktop/IN205/ENSTA2021/Projet1/bataille-navale/target/classes:/Users/nicolassigal/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -27,7 +27,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="/Users/nicolassigal/Desktop/IN205/ENSTA2021/Projet1/bataille-navale/target/surefire/surefirebooter14492037925625934846.jar"/>
+    <property name="surefire.real.class.path" value="/Users/nicolassigal/Desktop/IN205/ENSTA2021/Projet1/bataille-navale/target/surefire/surefirebooter15528557665864100329.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="15.0.1+9"/>
     <property name="user.name" value="nicolassigal"/>
@@ -50,5 +50,5 @@
     <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
     <property name="java.class.version" value="59.0"/>
   </properties>
-  <testcase name="testApp" classname="ensta.AppTest" time="0.002"/>
+  <testcase name="testApp" classname="ensta.AppTest" time="0"/>
 </testsuite>
