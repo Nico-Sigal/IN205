@@ -1,6 +1,6 @@
 package ensta;
 
-public class Board //implements IBoard
+public class Board implements IBoard
 {
 
 	private int size;
@@ -42,17 +42,6 @@ public class Board //implements IBoard
 			System.out.println("Problème d'indice de type : " + e.toString() );
 			System.out.println("Réponse à l'appel getHit("+x+","+y+") impossible, false renvoyé par défaut\n");
 			return false;
-		}
-	}
-	
-	public void setHit(Boolean hit, int x, int y){
-		try{
-		this.hits[y-1][x-1] = hit;
-		}
-		catch (Exception e)
-		{
-			System.out.println("Problème d'indice de type : " + e.toString() );
-			System.out.println("Frappe annulée\n");
 		}
 	}
 	
@@ -196,6 +185,7 @@ public class Board //implements IBoard
 	{
 		ShipState[][] saveShips = saveShips();
 		AbstractShip.Orientation o = ship.getOrientation();
+		ship.initialized = true;
 		int no = 0 , ea = 0 , so = 0, we = 0;
 		if (o == AbstractShip.Orientation.NORTH){ no = 1;}
 		if (o == AbstractShip.Orientation.EAST){ ea = 1;}
@@ -228,33 +218,44 @@ public class Board //implements IBoard
 		}
 
 		catch (Illegal­Argument­Exception e){
+			ship.initialized = false;
 			this.ship = saveShips;
 			sautLigne(1);
 			System.out.println("Problème de type : " + e.toString());
 		}
 		catch (Exception e){
+			ship.initialized = false;
 			this.ship = saveShips;
 			sautLigne(1);
 			System.out.println("Problème d'indice de type : " + e.toString());
 		}
 	}
 
-	public boolean hasShip(int x, int y){
-		try{
-			if (this.ship[y][x].isStruck() != null){
-				return false;
-			}
-			else {
-				return true;
-			}
+	public boolean hasShip(int x, int y) 
+	{
+		try {
+			if (this.ship[y-1][x-1].isStruck() == null || this.ship[y-1][x-1].getShip().isSunk()){ return false; }
+			else { return true;}
 		}
-		catch (Exception e){
+		catch (Exception e) {
 			System.out.println("Problème d'indice de type : " + e.toString() );
 			System.out.println("Réponse à l'appel hasShip("+x+","+y+") impossible, false renvoyé par défaut\n");
 			return false;
 		}
 	}
-	
+
+	public void setHit(boolean hit, int x, int y)
+	{
+		try{
+		this.hits[y][x] = hit;
+		}
+		catch (Exception e)
+		{
+			System.out.println("Problème d'indice de type : " + e.toString() );
+			System.out.println("Frappe annulée\n");
+		}
+	}
+		
 	public Hit sendHit(int x, int y){
 		Hit res;
 		if (ship[y-1][x-1].isStruck() == null || ship[y-1][x-1].isStruck() == true) {
@@ -271,5 +272,4 @@ public class Board //implements IBoard
 			else{ return Hit.STRIKE; }
 		}
 	}
-
-}
+};

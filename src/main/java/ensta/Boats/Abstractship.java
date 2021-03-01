@@ -8,6 +8,7 @@ public class AbstractShip {
 	public enum Orientation {NORTH,EAST,SOUTH,WEST};
 	public Orientation orientation;
 	public int strikeCount;
+	public boolean initialized; // Pour savoir si le navire a été posé avec succes sur un board
 
 	public AbstractShip(char label, String name, int size, Orientation orientation){
 		this.name = name;
@@ -26,6 +27,8 @@ public class AbstractShip {
 	public void setOrientation(Orientation orientation) {this.orientation = orientation; }
 	
 	public void addStrike(){ strikeCount ++; }
+	
+	public boolean getInitialized() { return this.initialized; }
 
 	public boolean isSunk(){
 		boolean sunk = strikeCount == size ? true : false ;

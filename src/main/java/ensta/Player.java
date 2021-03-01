@@ -48,7 +48,7 @@ public class Player {
 			board.putShip(s, res.x, res.y);
 			
             // TODO when ship placement successful
-            ++i;
+            if (s.getInitialized()){ ++i; }
             done = i == 5;
 
             board.print();

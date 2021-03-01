@@ -37,5 +37,14 @@ public interface IBoard {
      * @param y
      * @return true if the hit is successful
      */
-	Boolean getHit(int x, int y);
+    Boolean getHit(int x, int y);
+
+    /**
+    * Sends a hit at the given position
+    * @param x
+    * @param y
+    * @return status for the hit (eg : strike or miss)
+    */
+    Hit sendHit(int x, int y);
+    public void print();
 }
